@@ -83,6 +83,59 @@ The agent reads what artifacts exist and routes to the right phase automatically
 
 State lives in files, not in memory — so you can pick up where you left off in a new conversation. See [architecture.md](.github/agents/references/architecture.md) for the full workflow diagram, routing table, and artifact locations.
 
+---
+
+## Track 2: Garden Engineering
+
+niwashi-studio also includes a **complete software engineering pipeline** mapped to the garden philosophy. Use `@niwashi-engineer` to plan, build, review, and ship features.
+
+```
+@niwashi-engineer plan a user authentication system
+```
+
+Or use slash commands:
+
+```
+/niwashi-eng-01-ideate      # 種選び — Select seeds
+/niwashi-eng-02-brainstorm  # 土づくり — Prepare soil
+/niwashi-eng-03-plan        # 庭図 — Draw blueprint
+/niwashi-eng-04-deepen      # 深掘り — Strengthen roots
+/niwashi-eng-05-work        # 植栽 — Plant with intention
+/niwashi-eng-06-review      # 剪定 — Prune for perfection
+/niwashi-eng-07-compound    # 堆肥 — Compost knowledge
+```
+
+### The Engineering Workflow
+
+```
+Track 1: 庭園物語 (Garden Story)       @niwashi
+  DISCOVER → RESEARCH → WIREFRAME → BUILD → REVIEW → HARVEST
+
+Track 2: 造園術 (Garden Engineering)    @niwashi-engineer
+  IDEATE → BRAINSTORM → PLAN → [DEEPEN] → WORK → REVIEW → COMPOUND
+```
+
+| Phase | 日本語 | What happens | Output |
+|-------|--------|-------------|--------|
+| 🌱 IDEATE | 種選び | Generate and filter improvement ideas | `docs/ideation/*.md` |
+| 🪴 BRAINSTORM | 土づくり | Explore requirements through dialogue | `docs/brainstorms/*-requirements.md` |
+| 📐 PLAN | 庭図 | Structured plan with implementation units | `docs/plans/*-plan.md` |
+| 🌳 DEEPEN | 深掘り | Enhance plan with parallel research | Enhanced plan file |
+| 🌿 WORK | 植栽 | Execute plan with tests and commits | PR with code changes |
+| ✂️ REVIEW | 剪定 | Multi-agent code review | Todo files with findings |
+| 🍂 COMPOUND | 堆肥 | Document lessons learned | `docs/solutions/*.md` |
+
+### Full Pipeline (LFG / SLFG)
+
+For end-to-end delivery, use the meta-orchestrators:
+
+```
+/niwashi-eng-lfg    # 造園 — Sequential pipeline: plan → work → review → ship
+/niwashi-eng-slfg   # 嵐の造園 — Swarm mode: parallel agents for maximum throughput
+```
+
+---
+
 ## Architecture
 
 See [`.github/agents/references/architecture.md`](.github/agents/references/architecture.md) for the full workflow diagram, routing table, design principles, and external skill references.
@@ -90,6 +143,8 @@ See [`.github/agents/references/architecture.md`](.github/agents/references/arch
 ## The Garden Metaphor
 
 Each phase draws from the philosophy of Japanese garden design — every element intentional, nothing superfluous.
+
+### Track 1: Garden Story Principles
 
 | | Principle | Meaning |
 |---|-----------|---------|
@@ -99,6 +154,18 @@ Each phase draws from the philosophy of Japanese garden design — every element
 | 🌿 | 手入れ *Teire* | Cultivate with patience, prune the excess |
 | ⏸️ | 間 *Ma* | The pause where quality is found |
 | 🍂 | 実り *Minori* | Gather fruit, save seeds for next season |
+
+### Track 2: Garden Engineering Principles
+
+| | Principle | Meaning |
+|---|-----------|---------|
+| 🌱 | 種選び *Tane Erabi* | Select the finest seeds before committing |
+| 🪴 | 土づくり *Tsuchi-zukuri* | Prepare the soil through dialogue |
+| 📐 | 庭図 *Niwazu* | Map every path before the first stone |
+| 🌳 | 深掘り *Fukabori* | Deep holes make strong roots |
+| 🌿 | 植栽 *Shokusai* | Place each plant with intention |
+| ✂️ | 剪定 *Sentei* | Remove what weakens, keep what strengthens |
+| 🍂 | 堆肥 *Taihi* | All returns to the soil as compost |
 
 ## External Skills
 

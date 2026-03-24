@@ -259,3 +259,127 @@ Each phase carries a subtle philosophical reference:
 | `skill-creator` | [anthropics/skills](https://github.com/anthropics/skills/tree/main/skills/skill-creator) | See LICENSE.txt | Create, test, and optimize new skills on-the-fly |
 
 To update, re-download from the source repos and replace the corresponding `skills/` directory.
+
+---
+
+## Track 2: 造園術 (Garden Engineering) — Software Engineering Workflow
+
+niwashi-studio includes a second workflow track for general-purpose software engineering, mapped to the same garden metaphor philosophy.
+
+### The Engineering Pipeline
+
+```
+Track 1: 庭園物語 (Garden Story) — Interactive Narratives
+  DISCOVER → RESEARCH → WIREFRAME → BUILD → REVIEW → HARVEST     @niwashi
+
+Track 2: 造園術 (Garden Engineering) — Software Engineering
+  IDEATE → BRAINSTORM → PLAN → [DEEPEN] → WORK → REVIEW → COMPOUND     @niwashi-engineer
+    🌱        🪴          📐       🌳        🌿       ✂️        🍂
+  種選び    土づくり      庭図     深掘り     植栽     剪定      堆肥
+```
+
+### Engineering Phases
+
+| Phase | Skill | Japanese | Input | Output |
+|-------|-------|----------|-------|--------|
+| IDEATE | `niwashi-eng-01-ideate` | 種選び (Tane Erabi) | Focus hint | `docs/ideation/*.md` |
+| BRAINSTORM | `niwashi-eng-02-brainstorm` | 土づくり (Tsuchi-zukuri) | Feature idea | `docs/brainstorms/*-requirements.md` |
+| PLAN | `niwashi-eng-03-plan` | 庭図 (Niwazu) | Feature description | `docs/plans/*-plan.md` |
+| DEEPEN | `niwashi-eng-04-deepen` | 深掘り (Fukabori) | Plan file | Enhanced plan file |
+| WORK | `niwashi-eng-05-work` | 植栽 (Shokusai) | Plan file | PR with code changes |
+| REVIEW | `niwashi-eng-06-review` | 剪定 (Sentei) | PR / branch | Todo files with findings |
+| COMPOUND | `niwashi-eng-07-compound` | 堆肥 (Taihi) | Solved problem | `docs/solutions/*.md` |
+
+### Helper Skills
+
+| Skill | Japanese | Purpose |
+|-------|----------|---------|
+| `niwashi-eng-test` | 水やり (Mizuyari) | Browser testing with agent-browser |
+| `niwashi-eng-showcase` | 庭見 (Niwami) | Feature video walkthrough |
+| `niwashi-eng-weed` | 草取り (Kusatori) | Resolve todo items in parallel |
+
+### Meta-Orchestrators
+
+| Skill | Japanese | Purpose |
+|-------|----------|---------|
+| `niwashi-eng-lfg` | 造園 (Zouen) | Full sequential pipeline |
+| `niwashi-eng-slfg` | 嵐の造園 (Arashi no Zouen) | Swarm-mode pipeline with parallel execution |
+
+### Engineering Artifact Locations
+
+```
+docs/
+├── ideation/        ← IDEATE output
+├── brainstorms/     ← BRAINSTORM output
+├── plans/           ← PLAN output (also used by Track 1)
+└── solutions/       ← COMPOUND output
+```
+
+### Engineering Workflow Diagram
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│                   @niwashi-engineer orchestrator                        │
+│                                                                         │
+│  Routes by user intent → reads artifact state → dispatches phase skill  │
+└────────────┬────────────────────────────────────────────────────────────┘
+             │
+     ┌───────▼───────┐
+     │  User intent?  │
+     └──┬──┬──┬──┬──┬┘
+        │  │  │  │  │
+  ┌─────┘  │  │  │  └──────────────────────────────────┐
+  ▼        ▼  ▼  ▼                                     ▼
+IDEATE  BRAIN PLAN WORK                             REVIEW
+  │     STORM  │    │                                  │
+  │       │    │    │                                  │
+  ▼       ▼    ▼    ▼                                  ▼
+docs/   docs/  docs/ PR + code                      todos/
+ideation brains plans                               findings
+  │       │    │    │                                  │
+  └──►────┘──►─┘    └──►──────────────────────────────►│
+                                                       ▼
+                                                   COMPOUND
+                                                       │
+                                                       ▼
+                                                docs/solutions/
+```
+
+### LFG Pipeline (Sequential)
+
+```
+PLAN → [DEEPEN] → WORK → REVIEW → WEED → TEST → SHOWCASE → DONE
+  📐      🌳       🌿      ✂️      🌾     💧      🏞️       ✅
+```
+
+### SLFG Pipeline (Swarm Mode)
+
+```
+Sequential:  PLAN → [DEEPEN] → WORK (swarm)
+                                  │
+Parallel:                   REVIEW ─┬─ TEST
+                                    │
+Sequential:               WEED → SHOWCASE → DONE
+```
+
+### Engineering Garden Principles
+
+| Phase | Principle | Meaning |
+|-------|-----------|---------|
+| IDEATE | 種選び (Tane Erabi) | Select seeds carefully before committing to planting |
+| BRAINSTORM | 土づくり (Tsuchi-zukuri) | Turn over the earth, mix nutrients, create conditions for growth |
+| PLAN | 庭図 (Niwazu) | Map every path and bed before the first stone is placed |
+| DEEPEN | 深掘り (Fukabori) | Deep holes make strong roots — shallow planting yields weak growth |
+| WORK | 植栽 (Shokusai) | Place each plant deliberately, reading the soil, adapting to what the earth reveals |
+| REVIEW | 剪定 (Sentei) | Remove what weakens the whole, leaving only what strengthens the shape |
+| COMPOUND | 堆肥 (Taihi) | Nothing is wasted — all returns to the soil as compost for future growth |
+
+### Shared Design Principles
+
+Both Track 1 and Track 2 share the same core architecture:
+
+1. **Artifact-driven routing** — state lives in files, not in memory
+2. **Phase-based workflow** — clear inputs and outputs per phase
+3. **Progressive loops** — inner loops (rework) and outer loops (compound)
+4. **Parallel subagent dispatch** — research streams, review agents, work execution
+5. **Context window safety** — each phase can run in a separate conversation
