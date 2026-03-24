@@ -81,6 +81,29 @@ For each level, specify: font family, size range, weight, and line-height.
 --text-label: 0.875rem;
 ```
 
+### 2.5 Background Treatment
+
+Backgrounds create atmosphere and depth. A solid white or dark background is almost never the right choice for a narrative visualization — it signals "I didn't think about this."
+
+For each section, define the background approach:
+
+- **Base layer:** Solid color from the palette, or a gradient between palette values
+- **Depth layer:** Subtle pattern, noise texture, or geometric shapes that add dimension without competing with content
+- **Contextual effects:** Effects that match the narrative's domain (e.g., grid lines for optimization, organic shapes for biology, circuit patterns for computing)
+
+**Rules:**
+- **Cross-section variation is mandatory.** Not every section should use the same background approach. Vary between gradient directions, pattern densities, and color temperatures to create visual rhythm.
+- **Hero sections need atmosphere.** The first section sets the tone — layer a gradient, add a subtle radial glow, or use a CSS pattern that anchors the visual identity.
+- **Backgrounds serve the content.** If a section has a dense visualization, the background should recede. If a section is mostly typography, the background can be more expressive.
+
+Specify as CSS:
+```css
+/* EXAMPLE — replace with thesis-appropriate choices */
+--bg-hero: linear-gradient(135deg, var(--color-primary-dark) 0%, #0a0a0a 100%);
+--bg-section-alt: radial-gradient(ellipse at 20% 50%, var(--color-primary-light) 0%, transparent 70%);
+--bg-pattern: url("data:image/svg+xml,..."); /* or describe the pattern to generate */
+```
+
 ### 3. Animation Vocabulary
 
 Define the motion language for the narrative. Animations should clarify, not decorate.
@@ -165,6 +188,9 @@ Return your visual language as structured markdown with these exact headings:
 
 ### Typography
 [CSS custom properties with font families, sizes, weights]
+
+### Background Treatment
+[CSS custom properties/patterns for hero, alternating sections, and contextual effects]
 
 ### Animation Vocabulary
 [Named animation patterns with triggers, durations, and purposes]

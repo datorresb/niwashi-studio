@@ -130,8 +130,10 @@ For the current section, gather:
 1. **Wireframe** — from `narrative-spec.md` under `## Wireframes`, find the
    matching section block (HEADER, INTERACTIVE, COPY, TRANSITION)
 2. **Visual language** — from `narrative-spec.md` under the visual language /
-   design system section (palette, typography, motifs)
-3. **Calibration exemplar** (sections 3+ only) — review the approved section 1
+   design system section (palette, typography, background treatment, motifs)
+3. **Design reinforcement** — read `skills/niwashi-04-build/references/design-reinforcement.md`
+   before writing any component code. This is a compact anti-convergence nudge.
+4. **Calibration exemplar** (sections 3+ only) — review the approved section 1
    and 2 components to understand the established quality bar
 
 ### 3.1b Asset Readiness Check
@@ -173,6 +175,7 @@ implementation:
 - **Interactions must feel intentional.** Smooth easing, purposeful motion. No janky transitions or placeholder animations.
 - **Color serves meaning.** Every color use should trace back to the visual language's semantic palette.
 - **Know your limits.** The agent cannot draw. If a section needs pixel art, illustrations, or custom graphics — use pre-made assets, invoke a specialized skill, or ask the user. Never generate complex art with SVG `<rect>` elements or CSS box-shadow pixel grids. The result will be ugly.
+- **Resist convergence.** Re-read `references/design-reinforcement.md` if you catch yourself defaulting to flat backgrounds, uniform layouts, or timid color use. Each section should feel structurally distinct.
 
 Implementation guidelines:
 
