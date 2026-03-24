@@ -48,6 +48,7 @@ Document the visual system with reproducible specifics.
   - Code: <font, size — e.g., "JetBrains Mono 14px/1.5, inline within prose">
   - Headings: <style — e.g., "Inter 600 weight, tracking-tight, scale 1.25/1.5/2rem">
 - **Key motif:** <the recurring visual element — e.g., "subtle grid-dot pattern at 3% opacity reinforcing 'data points' theme">
+- **Background treatment:** <what worked and what didn't — e.g., "layered gradient hero (135deg, primary-dark to near-black) set the mood; alternating section backgrounds with radial glows kept visual rhythm; solid bg-gray-950 on section 3 felt flat — added noise texture at 2% opacity to fix">
 - **Layout pattern:** <overall page structure — e.g., "sticky sidebar with parameter controls, scrollable main panel, sections separated by 4rem with fade-in on scroll-enter">
 - **Transitions:** <how elements enter/change — e.g., "scroll-triggered fade-up with 200ms ease-in, staggered 50ms per element within a section">
 

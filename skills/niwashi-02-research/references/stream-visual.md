@@ -81,7 +81,7 @@ For each level, specify: font family, size range, weight, and line-height.
 --text-label: 0.875rem;
 ```
 
-### 2.5 Background Treatment
+### 3. Background Treatment
 
 Backgrounds create atmosphere and depth. A solid white or dark background is almost never the right choice for a narrative visualization — it signals "I didn't think about this."
 
@@ -104,7 +104,7 @@ Specify as CSS:
 --bg-pattern: url("data:image/svg+xml,..."); /* or describe the pattern to generate */
 ```
 
-### 3. Animation Vocabulary
+### 4. Animation Vocabulary
 
 Define the motion language for the narrative. Animations should clarify, not decorate.
 
@@ -124,7 +124,7 @@ For each transition type identified in S3, define:
 
 **Rule:** Every animation must serve comprehension. Ask "does removing this animation lose understanding?" If no, remove it.
 
-### 4. Interaction Patterns
+### 5. Interaction Patterns
 
 For each section in S3's narrative arc, define the interaction vocabulary. Map S1's visual affordances to concrete interactions:
 
@@ -138,7 +138,7 @@ For each interaction:
 
 Aim for typically 3 or more distinct interaction patterns across the narrative. Reuse patterns across sections where appropriate — consistency helps learning.
 
-### 5. Layout Tokens
+### 6. Layout Tokens
 
 Define the spatial system:
 
@@ -153,14 +153,14 @@ Define the spatial system:
 --max-width-viz: 800px;    /* visualization container */
 ```
 
-### 6. Section-Specific Visual Notes
+### 7. Section-Specific Visual Notes
 
 For each section in S3, add brief visual direction notes:
 - What's the dominant visual element? (Visualization, illustration, text, animation)
 - What mood should the visual treatment convey? (Match S3's emotional beat)
 - Any specific visual references from the concept domain?
 
-### 7. Asset Palette
+### 8. Asset Palette
 
 Identify visual elements that **cannot be produced well with code alone** — illustrations, pixel art, complex icons, sprites, tilesets, photographs.
 

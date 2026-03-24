@@ -23,7 +23,7 @@ Niwashi already avoids the worst of this (Inter/Roboto bans, semantic color requ
 3. **Missing page-load choreography** — no staggered reveal, everything appears at once
 4. **Spec drift** — the visual language is defined in RESEARCH but by BUILD time, the agent has so much implementation context that design intent gets diluted
 
-## Proposed Solution: Two Changes (D strategy)
+## Proposed Solution: Three Changes
 
 ### Change 1: Expand RESEARCH Stream 4 (stream-visual.md)
 
