@@ -246,6 +246,25 @@ Each phase carries a subtle philosophical reference:
 | REVIEW | 間 (Ma) | The pause, the space between | Quality lives in the pause before "done" |
 | HARVEST | 実り (Minori) | Gather fruit, save seeds | Document what worked for next season |
 
+## SLFG — Autonomous Pipeline
+
+The SLFG (Sequential-Loop-Fork-Gather) pipeline runs all 6 phases with minimal human intervention. Use `/niwashi-slfg` to invoke it.
+
+```
+Sequential:  DISCOVER ──→ RESEARCH ──→ WIREFRAME  (human approves wireframes)
+Swarm:       BUILD sections 3+ in parallel
+Auto-loop:   BUILD ↔ REVIEW (max --cycles, default 3)
+Post-review: SMOKE TEST (agent-browser, optional)
+Final:       HARVEST → DONE
+```
+
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| `--cycles N` | 3 | Max BUILD↔REVIEW loop iterations |
+| `--audience` | (asked) | Skip DISCOVER audience question |
+
+The SLFG orchestrator reads artifact state to resume from any phase. It calls the same 6 skills as `@niwashi` — no duplicate logic.
+
 ## External Skills (in `skills/`)
 
 > **Last updated:** 2026-03-24. These skills are snapshots — check the source repos for newer versions.

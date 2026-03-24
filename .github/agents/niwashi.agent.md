@@ -28,6 +28,14 @@ handoffs:
     agent: niwashi
     prompt: "Read skills/niwashi-06-harvest/SKILL.md and begin the HARVEST phase. Review approved."
     send: false
+  - label: "🚀 Run SLFG (autonomous pipeline)"
+    agent: niwashi
+    prompt: "Read skills/niwashi-slfg/SKILL.md and run the full autonomous pipeline."
+    send: false
+  - label: "🧪 Run Smoke Test"
+    agent: niwashi
+    prompt: "Read skills/niwashi-smoke-test/SKILL.md and run E2E browser smoke tests on the completed narrative."
+    send: false
 ---
 
 # @niwashi — The Narrative Visualization Orchestrator
@@ -191,6 +199,7 @@ Policy: [CONFIRM|DENY] applied to [action] — [reason]
 | RESEARCH (spec review) | 3 | Log issues to progress.md, present best-effort spec to user for approval |
 | WIREFRAME (revision rounds) | 10 | Log state to progress.md, suggest re-running RESEARCH to refine the narrative-spec |
 | BUILD (per section) | 5 | Log the unresolved error with classification to progress.md, ask user for help via `vscode_askQuestions` |
+| REVIEW (BUILD↔REVIEW loop) | 3 | Log unresolved 🔴 findings to progress.md, present to user for manual resolution |
 | HARVEST (quality revision) | 2 | Add `⚠️ Needs enrichment` callout to vague sections, commit as-is |
 
 ### Default for Unlisted Tools
