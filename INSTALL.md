@@ -33,6 +33,11 @@ cp -r /tmp/niwashi-studio/skills/ ./skills/
 mkdir -p niwashi_docs/patterns
 touch niwashi_docs/patterns/.gitkeep
 
+# Backlog.md integration (recommended)
+cp /tmp/niwashi-studio/AGENTS.md ./AGENTS.md
+mkdir -p backlog
+cp /tmp/niwashi-studio/backlog/config.yml ./backlog/config.yml
+
 # Copilot instructions (append if exists, create if not)
 if [ -f .github/copilot-instructions.md ]; then
   echo "" >> .github/copilot-instructions.md
@@ -52,7 +57,9 @@ rm -rf /tmp/niwashi-studio
 ```bash
 ls .github/agents/niwashi.agent.md && echo "✅ Agent installed"
 ls .github/prompts/niwashi-01-discover.prompt.md && echo "✅ Slash commands installed"
-ls skills/niwashi-01-discover/SKILL.md && echo "✅ Skills installed"
+ls skills/narrative/niwashi-01-discover/SKILL.md && echo "✅ Narrative skills installed"
+ls skills/external/web-artifacts-builder/SKILL.md && echo "✅ External skills installed"
+node skills/rebuild-registry.js && echo "✅ Skills index generated"
 ls niwashi_docs/patterns/.gitkeep && echo "✅ Workflow docs ready"
 ```
 

@@ -1,0 +1,23 @@
+{
+  "v": "1.0.0",
+  "n": 13,
+  "skills": {
+    "narrative": [
+      {"id":"niwashi-01-discover","desc":"Guide Socratic discovery of a technical concept to produce a narrative brief. Use this skill whenever someone wants to e","path":"skills/narrative/niwashi-01-discover/SKILL.md"},
+      {"id":"niwashi-02-research","desc":"Transform a narrative brief into a complete narrative specification through parallel research streams. Use this skill wh","path":"skills/narrative/niwashi-02-research/SKILL.md"},
+      {"id":"niwashi-03-wireframe","desc":"Generates ASCII wireframes for every section in a narrative spec. Use /niwashi-03-wireframe whenever you need to turn a ","path":"skills/narrative/niwashi-03-wireframe/SKILL.md"},
+      {"id":"niwashi-04-build","desc":"> Incrementally build each narrative section as a React component with calibration-then-autonomous execution. Scaffolds ","path":"skills/narrative/niwashi-04-build/SKILL.md"},
+      {"id":"niwashi-05-review","desc":"Review a completed narrative visualization across content and implementation quality. Use /niwashi-05-review after all s","path":"skills/narrative/niwashi-05-review/SKILL.md"},
+      {"id":"niwashi-06-harvest","desc":"Extract reusable patterns from a completed narrative visualization. Use niwashi-06-harvest after a narrative passes revi","path":"skills/narrative/niwashi-06-harvest/SKILL.md"},
+      {"id":"niwashi-slfg","desc":"> Autonomous orchestrator that chains all 6 niwashi phases with parallel BUILD, automatic BUILD↔REVIEW correction loops,","path":"skills/narrative/niwashi-slfg/SKILL.md"},
+      {"id":"niwashi-smoke-test","desc":"> E2E browser smoke test for a completed narrative visualization. Uses agent-browser CLI to verify all sections render, ","path":"skills/narrative/niwashi-smoke-test/SKILL.md"}
+    ],
+    "external": [
+      {"id":"vercel-composition-patterns","desc":" React composition patterns that scale. Use when refactoring components with boolean prop proliferation, building flexib","path":"skills/external/composition-patterns/SKILL.md"},
+      {"id":"vercel-react-best-practices","desc":"React and Next.js performance optimization guidelines from Vercel Engineering. This skill should be used when writing, r","path":"skills/external/react-best-practices/SKILL.md"},
+      {"id":"skill-creator","desc":"Create new skills, modify and improve existing skills, and measure skill performance. Use when users want to create a sk","path":"skills/external/skill-creator/SKILL.md"},
+      {"id":"web-artifacts-builder","desc":"Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend web technologies (","path":"skills/external/web-artifacts-builder/SKILL.md"},
+      {"id":"web-design-guidelines","desc":"Review UI code for Web Interface Guidelines compliance. Use when asked to \"review my UI\", \"check accessibility\", \"audit ","path":"skills/external/web-design-guidelines/SKILL.md"}
+    ]
+  }
+}

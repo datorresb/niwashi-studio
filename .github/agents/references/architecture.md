@@ -246,9 +246,47 @@ Each phase carries a subtle philosophical reference:
 | REVIEW | 間 (Ma) | The pause, the space between | Quality lives in the pause before "done" |
 | HARVEST | 実り (Minori) | Gather fruit, save seeds | Document what worked for next season |
 
-## External Skills (in `skills/`)
+## SLFG — Autonomous Pipeline
 
-> **Last updated:** 2026-03-24. These skills are snapshots — check the source repos for newer versions.
+The SLFG (Sequential-Loop-Fork-Gather) pipeline runs all 6 phases with minimal human intervention. Use `/niwashi-slfg` to invoke it.
+
+```
+Sequential:  DISCOVER ──→ RESEARCH ──→ WIREFRAME  (human approves wireframes)
+Swarm:       BUILD sections 3+ in parallel
+Auto-loop:   BUILD ↔ REVIEW (max --cycles, default 3)
+Post-review: SMOKE TEST (agent-browser, optional)
+Final:       HARVEST → DONE
+```
+
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| `--cycles N` | 3 | Max BUILD↔REVIEW loop iterations |
+| `--audience` | (asked) | Skip DISCOVER audience question |
+
+The SLFG orchestrator reads artifact state to resume from any phase. It calls the same 6 skills as `@niwashi` — no duplicate logic.
+
+## Backlog.md Integration (Recommended)
+
+When [Backlog.md MCP](https://github.com/backlog-md/backlog-md) is installed, `@niwashi` creates structured tasks alongside the artifact state:
+
+**Dual-write model:**
+- `progress.md` — always written (append-only session log). Source of truth.
+- Backlog tasks — written when MCP is available (structured status tracking). Fire-and-forget.
+
+**Detection:** The orchestrator tries a Backlog MCP tool call at session start. If it succeeds → dual-write mode. If it fails → progress.md only.
+
+**Auto-task creation:**
+- New narrative → epic task
+- Each phase → sub-task with phase label
+- Phase complete → sub-task marked Done
+
+**Labels:** `discover`, `research`, `wireframe`, `build`, `review`, `harvest`, `smoke-test`, `slfg`
+
+**This is purely supplementary.** The canonical state machine uses `sections-checklist.json` for phase routing. Backlog adds searchable task history and cross-narrative visibility.
+
+## External Skills (in `skills/external/`)
+
+> **Last updated:** 2026-03-25. These skills are snapshots — check the source repos for newer versions.
 
 | Skill | Source | License | Purpose |
 |-------|--------|---------|--------|
@@ -258,4 +296,12 @@ Each phase carries a subtle philosophical reference:
 | `web-design-guidelines` | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills/tree/main/skills/web-design-guidelines) | MIT | UI review against Web Interface Guidelines |
 | `skill-creator` | [anthropics/skills](https://github.com/anthropics/skills/tree/main/skills/skill-creator) | See LICENSE.txt | Create, test, and optimize new skills on-the-fly |
 
-To update, re-download from the source repos and replace the corresponding `skills/` directory.
+To update, re-download from the source repos and replace the corresponding `skills/external/` directory.
+
+## Skill Index
+
+`skills/skills-index.json` is an auto-generated LLM-optimized index of all skills. Regenerate after adding or removing skills:
+
+```bash
+node skills/rebuild-registry.js
+```

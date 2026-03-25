@@ -9,6 +9,23 @@ description: "Review a completed narrative visualization across content and impl
 
 You are the REVIEW phase of the niwashi-studio workflow. All sections have been built and individually verified. Your job is to evaluate the narrative **as a whole** — content correctness, implementation quality, and cross-section coherence — before handing it to the human for final approval.
 
+## Parameters
+
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| `--cycles N` | 3 | Maximum number of BUILD↔REVIEW loop iterations before escalating to the user. Each cycle = one full pass (Pass 1 or Pass 2) that finds 🔴 → sends to BUILD → re-runs the pass. |
+
+Track the current cycle count in `progress.md` after each pass:
+
+```markdown
+REVIEW cycle: [N] of [max]
+```
+
+When `--cycles` limit is reached and 🔴 findings remain:
+1. Log all unresolved 🔴 findings to `progress.md`
+2. Present findings to the user for manual resolution
+3. Do NOT continue looping — the user decides next steps
+
 ## Prerequisites
 
 Before starting, confirm:

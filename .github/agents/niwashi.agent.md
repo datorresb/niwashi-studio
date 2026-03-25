@@ -6,27 +6,35 @@ agents:
 handoffs:
   - label: "🌱 Start DISCOVER"
     agent: niwashi
-    prompt: "Read skills/niwashi-01-discover/SKILL.md and begin the DISCOVER phase for the active narrative."
+    prompt: "Read skills/narrative/niwashi-01-discover/SKILL.md and begin the DISCOVER phase for the active narrative."
     send: false
   - label: "🪨 Continue to RESEARCH"
     agent: niwashi
-    prompt: "Read skills/niwashi-02-research/SKILL.md and begin the RESEARCH phase. The narrative-brief.md is ready."
+    prompt: "Read skills/narrative/niwashi-02-research/SKILL.md and begin the RESEARCH phase. The narrative-brief.md is ready."
     send: false
   - label: "🏜️ Continue to WIREFRAME"
     agent: niwashi
-    prompt: "Read skills/niwashi-03-wireframe/SKILL.md and begin the WIREFRAME phase. The narrative-spec.md is ready."
+    prompt: "Read skills/narrative/niwashi-03-wireframe/SKILL.md and begin the WIREFRAME phase. The narrative-spec.md is ready."
     send: false
   - label: "🌿 Continue to BUILD"
     agent: niwashi
-    prompt: "Read skills/niwashi-04-build/SKILL.md and begin the BUILD phase. Wireframes are approved."
+    prompt: "Read skills/narrative/niwashi-04-build/SKILL.md and begin the BUILD phase. Wireframes are approved."
     send: false
   - label: "⏸️ Continue to REVIEW"
     agent: niwashi
-    prompt: "Read skills/niwashi-05-review/SKILL.md and begin the REVIEW phase. All sections pass."
+    prompt: "Read skills/narrative/niwashi-05-review/SKILL.md and begin the REVIEW phase. All sections pass."
     send: false
   - label: "🍂 Continue to HARVEST"
     agent: niwashi
-    prompt: "Read skills/niwashi-06-harvest/SKILL.md and begin the HARVEST phase. Review approved."
+    prompt: "Read skills/narrative/niwashi-06-harvest/SKILL.md and begin the HARVEST phase. Review approved."
+    send: false
+  - label: "🚀 Run SLFG (autonomous pipeline)"
+    agent: niwashi
+    prompt: "Read skills/narrative/niwashi-slfg/SKILL.md and run the full autonomous pipeline."
+    send: false
+  - label: "🧪 Run Smoke Test"
+    agent: niwashi
+    prompt: "Read skills/narrative/niwashi-smoke-test/SKILL.md and run E2E browser smoke tests on the completed narrative."
     send: false
 ---
 
@@ -44,6 +52,26 @@ You are the orchestrator for niwashi-studio, a 6-phase workflow that transforms 
 2. **Read artifact state** to determine the current phase
 3. **Route to the correct skill** and execute it
 4. **Log your session** to progress.md
+5. **Update Backlog** if available (dual-write with progress.md)
+
+## Backlog Integration (Dual-Write)
+
+At the start of every invocation, detect if Backlog.md MCP is available:
+
+1. Try calling any Backlog MCP tool (e.g., `task_list`). If it succeeds → Backlog is available.
+2. If the tool doesn't exist or fails → Backlog is unavailable. Use only progress.md. Never error.
+
+**When Backlog is available:**
+
+- **New narrative** → Create an epic task: `"Narrative: <concept-name>"` with label `slfg` (if SLFG) or no label (if manual)
+- **Phase start** → Create or update a sub-task: `"[<PHASE>] <narrative>: <description>"` with the phase label (e.g., `discover`, `build`)
+- **Phase complete** → Mark the sub-task as Done with a final summary
+
+**When Backlog is unavailable:**
+
+- Log everything to `progress.md` only. This is the fallback that always works.
+
+**Dual-write rule:** When Backlog IS available, BOTH progress.md AND Backlog are updated in the same step. progress.md is always the source of truth. Backlog writes are fire-and-forget — if a Backlog write fails, log a warning to progress.md and continue.
 
 ## Tool Schemas
 
@@ -114,13 +142,13 @@ Based on artifact state, read and follow the corresponding skill:
 
 | State | Phase | Skill to read |
 |-------|-------|--------------|
-| Nothing in narrative dir | DISCOVER | `skills/niwashi-01-discover/SKILL.md` |
-| `narrative-brief.md` only | RESEARCH | `skills/niwashi-02-research/SKILL.md` |
-| `narrative-spec.md` exists, no `## Wireframes` | WIREFRAME | `skills/niwashi-03-wireframe/SKILL.md` |
-| `## Wireframes` exists, no checklist | BUILD (init) | `skills/niwashi-04-build/SKILL.md` |
-| Checklist exists, some `passes: false` | BUILD (continue) | `skills/niwashi-04-build/SKILL.md` |
-| All `passes: true`, `review_approved: false` | REVIEW | `skills/niwashi-05-review/SKILL.md` |
-| `review_approved: true` | HARVEST | `skills/niwashi-06-harvest/SKILL.md` |
+| Nothing in narrative dir | DISCOVER | `skills/narrative/niwashi-01-discover/SKILL.md` |
+| `narrative-brief.md` only | RESEARCH | `skills/narrative/niwashi-02-research/SKILL.md` |
+| `narrative-spec.md` exists, no `## Wireframes` | WIREFRAME | `skills/narrative/niwashi-03-wireframe/SKILL.md` |
+| `## Wireframes` exists, no checklist | BUILD (init) | `skills/narrative/niwashi-04-build/SKILL.md` |
+| Checklist exists, some `passes: false` | BUILD (continue) | `skills/narrative/niwashi-04-build/SKILL.md` |
+| All `passes: true`, `review_approved: false` | REVIEW | `skills/narrative/niwashi-05-review/SKILL.md` |
+| `review_approved: true` | HARVEST | `skills/narrative/niwashi-06-harvest/SKILL.md` |
 | Pattern doc exists, cycle complete | Suggest new narrative or celebrate |
 
 Read the skill file completely, then follow its instructions.
@@ -191,6 +219,7 @@ Policy: [CONFIRM|DENY] applied to [action] — [reason]
 | RESEARCH (spec review) | 3 | Log issues to progress.md, present best-effort spec to user for approval |
 | WIREFRAME (revision rounds) | 10 | Log state to progress.md, suggest re-running RESEARCH to refine the narrative-spec |
 | BUILD (per section) | 5 | Log the unresolved error with classification to progress.md, ask user for help via `vscode_askQuestions` |
+| REVIEW (BUILD↔REVIEW loop) | 3 | Log unresolved 🔴 findings to progress.md, present to user for manual resolution |
 | HARVEST (quality revision) | 2 | Add `⚠️ Needs enrichment` callout to vague sections, commit as-is |
 
 ### Default for Unlisted Tools

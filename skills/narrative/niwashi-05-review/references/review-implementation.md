@@ -136,6 +136,7 @@ Evaluate the complete narrative as a unified visual experience. This is not abou
 - [ ] **Palette consistency** — All sections use colors from the visual language defined in `narrative-spec.md` (Stream 4). No off-palette colors.
 - [ ] **Semantic color usage** — Colors carry consistent meaning (e.g., if blue means "optimal" in one section, it means "optimal" everywhere).
 - [ ] **Background consistency** — Section backgrounds follow a coherent pattern (alternating, gradient, or uniform — but intentional, not random).
+- [ ] **Background atmosphere** — Backgrounds implement the spec's atmospheric direction (layered gradients, textures, contextual effects) — not flat solid fills or generic white/dark.
 
 ### Typography Checklist
 
