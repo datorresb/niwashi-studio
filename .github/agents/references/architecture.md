@@ -265,6 +265,25 @@ Final:       HARVEST → DONE
 
 The SLFG orchestrator reads artifact state to resume from any phase. It calls the same 6 skills as `@niwashi` — no duplicate logic.
 
+## Backlog.md Integration (Recommended)
+
+When [Backlog.md MCP](https://github.com/backlog-md/backlog-md) is installed, `@niwashi` creates structured tasks alongside the artifact state:
+
+**Dual-write model:**
+- `progress.md` — always written (append-only session log). Source of truth.
+- Backlog tasks — written when MCP is available (structured status tracking). Fire-and-forget.
+
+**Detection:** The orchestrator tries a Backlog MCP tool call at session start. If it succeeds → dual-write mode. If it fails → progress.md only.
+
+**Auto-task creation:**
+- New narrative → epic task
+- Each phase → sub-task with phase label
+- Phase complete → sub-task marked Done
+
+**Labels:** `discover`, `research`, `wireframe`, `build`, `review`, `harvest`, `smoke-test`, `slfg`
+
+**This is purely supplementary.** The canonical state machine uses `sections-checklist.json` for phase routing. Backlog adds searchable task history and cross-narrative visibility.
+
 ## External Skills (in `skills/external/`)
 
 > **Last updated:** 2026-03-25. These skills are snapshots — check the source repos for newer versions.

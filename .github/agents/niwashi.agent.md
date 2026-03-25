@@ -52,6 +52,26 @@ You are the orchestrator for niwashi-studio, a 6-phase workflow that transforms 
 2. **Read artifact state** to determine the current phase
 3. **Route to the correct skill** and execute it
 4. **Log your session** to progress.md
+5. **Update Backlog** if available (dual-write with progress.md)
+
+## Backlog Integration (Dual-Write)
+
+At the start of every invocation, detect if Backlog.md MCP is available:
+
+1. Try calling any Backlog MCP tool (e.g., `task_list`). If it succeeds → Backlog is available.
+2. If the tool doesn't exist or fails → Backlog is unavailable. Use only progress.md. Never error.
+
+**When Backlog is available:**
+
+- **New narrative** → Create an epic task: `"Narrative: <concept-name>"` with label `slfg` (if SLFG) or no label (if manual)
+- **Phase start** → Create or update a sub-task: `"[<PHASE>] <narrative>: <description>"` with the phase label (e.g., `discover`, `build`)
+- **Phase complete** → Mark the sub-task as Done with a final summary
+
+**When Backlog is unavailable:**
+
+- Log everything to `progress.md` only. This is the fallback that always works.
+
+**Dual-write rule:** When Backlog IS available, BOTH progress.md AND Backlog are updated in the same step. progress.md is always the source of truth. Backlog writes are fire-and-forget — if a Backlog write fails, log a warning to progress.md and continue.
 
 ## Tool Schemas
 

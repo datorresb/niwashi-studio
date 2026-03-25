@@ -83,6 +83,23 @@ The agent reads what artifacts exist and routes to the right phase automatically
 
 State lives in files, not in memory — so you can pick up where you left off in a new conversation. See [architecture.md](.github/agents/references/architecture.md) for the full workflow diagram, routing table, and artifact locations.
 
+## Recommended: Backlog.md for Traceability
+
+niwashi-studio tracks state through artifacts (`progress.md` + `sections-checklist.json`). For structured task management across narratives, add [Backlog.md](https://github.com/backlog-md/backlog-md) MCP:
+
+| Without Backlog.md | With Backlog.md |
+|--------------------|-----------------|
+| Session logs in `progress.md` | Structured tasks per phase |
+| Section state in JSON checklist | JSON checklist + searchable task history |
+| Per-narrative visibility only | Cross-narrative dashboard via `backlog task_list` |
+| Manual decision tracking | Decisions archived as task comments |
+
+**Setup:** The installer copies `AGENTS.md` and `backlog/config.yml` automatically. Just install the [Backlog.md MCP server](https://github.com/backlog-md/backlog-md) in your editor.
+
+When Backlog is available, `@niwashi` automatically creates tasks for each phase — no manual tracking needed. When it's not installed, everything falls back to `progress.md` seamlessly.
+
+Phase labels: `discover`, `research`, `wireframe`, `build`, `review`, `harvest`, `smoke-test`, `slfg`
+
 ## Architecture
 
 See [`.github/agents/references/architecture.md`](.github/agents/references/architecture.md) for the full workflow diagram, routing table, design principles, and external skill references.

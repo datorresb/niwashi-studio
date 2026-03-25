@@ -33,6 +33,11 @@ cp -r /tmp/niwashi-studio/skills/ ./skills/
 mkdir -p niwashi_docs/patterns
 touch niwashi_docs/patterns/.gitkeep
 
+# Backlog.md integration (recommended)
+cp /tmp/niwashi-studio/AGENTS.md ./AGENTS.md
+mkdir -p backlog
+cp /tmp/niwashi-studio/backlog/config.yml ./backlog/config.yml
+
 # Copilot instructions (append if exists, create if not)
 if [ -f .github/copilot-instructions.md ]; then
   echo "" >> .github/copilot-instructions.md

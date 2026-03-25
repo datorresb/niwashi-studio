@@ -91,7 +91,12 @@ with parallel BUILD, auto-correction loops, and smoke testing.
 ### Step 0: Read State
 
 Check artifact state in `niwashi_docs/` to determine where to resume.
-Follow the same routing logic as the `@niwashi` orchestrator:
+Follow the same routing logic as the `@niwashi` orchestrator.
+
+**Backlog integration:** If Backlog MCP is available (try `task_list` — if it works, Backlog is on):
+- Create an epic task: `"SLFG: <narrative-name>"` with label `slfg`
+- For each phase below, create/update a sub-task with the phase label
+- If Backlog is unavailable, skip silently — progress.md handles everything
 
 | State | Resume at |
 |-------|-----------|
