@@ -111,27 +111,27 @@ Follow the same routing logic as the `@niwashi` orchestrator.
 
 ### Step 1: DISCOVER
 
-Read and execute `skills/niwashi-01-discover/SKILL.md`.
+Read and execute `skills/narrative/niwashi-01-discover/SKILL.md`.
 
 Pass the `concept` parameter. If `--audience` was provided, include it.
 Wait for the user to approve the narrative brief.
 
 ### Step 2: RESEARCH
 
-Read and execute `skills/niwashi-02-research/SKILL.md`.
+Read and execute `skills/narrative/niwashi-02-research/SKILL.md`.
 
 Run the 4 parallel research streams. Produce `narrative-spec.md`.
 
 ### Step 3: WIREFRAME
 
-Read and execute `skills/niwashi-03-wireframe/SKILL.md`.
+Read and execute `skills/narrative/niwashi-03-wireframe/SKILL.md`.
 
 Generate ASCII wireframes for all sections. **Wait for user approval.**
 This is the last mandatory human checkpoint before autonomous execution.
 
 ### Step 4: BUILD (Swarm)
 
-Read and execute `skills/niwashi-04-build/SKILL.md`.
+Read and execute `skills/narrative/niwashi-04-build/SKILL.md`.
 
 **Parallel execution for sections 3+:**
 
@@ -141,7 +141,7 @@ remaining sections as parallel subagents:
 ```
 For each section S where calibration_required: false:
   Subagent: "Implement section {S.id}: {S.title}
-    Read skills/niwashi-04-build/SKILL.md §3 (Per-Section Build Loop)
+    Read skills/narrative/niwashi-04-build/SKILL.md §3 (Per-Section Build Loop)
     Implement section {S.id} only
     Verify fresh (build + console + render)
     Update sections-checklist.json for this section
@@ -158,7 +158,7 @@ cycle = 0
 max_cycles = --cycles parameter (default 3)
 
 while cycle < max_cycles:
-  Read and execute skills/niwashi-05-review/SKILL.md --cycles {max_cycles}
+  Read and execute skills/narrative/niwashi-05-review/SKILL.md --cycles {max_cycles}
   
   Read sections-checklist.json
   if review_approved == true:
@@ -179,7 +179,7 @@ if review_approved == false:
 
 ### Step 6: SMOKE TEST
 
-If `skills/niwashi-smoke-test/SKILL.md` exists:
+If `skills/narrative/niwashi-smoke-test/SKILL.md` exists:
   Read and execute it.
   If smoke test fails → return to BUILD to fix, then re-run smoke test.
 
@@ -189,7 +189,7 @@ If skill is not installed:
 
 ### Step 7: HARVEST
 
-Read and execute `skills/niwashi-06-harvest/SKILL.md`.
+Read and execute `skills/narrative/niwashi-06-harvest/SKILL.md`.
 
 Extract patterns, commit, and log.
 
