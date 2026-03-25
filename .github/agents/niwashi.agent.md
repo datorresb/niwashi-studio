@@ -6,35 +6,35 @@ agents:
 handoffs:
   - label: "🌱 Start DISCOVER"
     agent: niwashi
-    prompt: "Read skills/niwashi-01-discover/SKILL.md and begin the DISCOVER phase for the active narrative."
+    prompt: "Read skills/narrative/niwashi-01-discover/SKILL.md and begin the DISCOVER phase for the active narrative."
     send: false
   - label: "🪨 Continue to RESEARCH"
     agent: niwashi
-    prompt: "Read skills/niwashi-02-research/SKILL.md and begin the RESEARCH phase. The narrative-brief.md is ready."
+    prompt: "Read skills/narrative/niwashi-02-research/SKILL.md and begin the RESEARCH phase. The narrative-brief.md is ready."
     send: false
   - label: "🏜️ Continue to WIREFRAME"
     agent: niwashi
-    prompt: "Read skills/niwashi-03-wireframe/SKILL.md and begin the WIREFRAME phase. The narrative-spec.md is ready."
+    prompt: "Read skills/narrative/niwashi-03-wireframe/SKILL.md and begin the WIREFRAME phase. The narrative-spec.md is ready."
     send: false
   - label: "🌿 Continue to BUILD"
     agent: niwashi
-    prompt: "Read skills/niwashi-04-build/SKILL.md and begin the BUILD phase. Wireframes are approved."
+    prompt: "Read skills/narrative/niwashi-04-build/SKILL.md and begin the BUILD phase. Wireframes are approved."
     send: false
   - label: "⏸️ Continue to REVIEW"
     agent: niwashi
-    prompt: "Read skills/niwashi-05-review/SKILL.md and begin the REVIEW phase. All sections pass."
+    prompt: "Read skills/narrative/niwashi-05-review/SKILL.md and begin the REVIEW phase. All sections pass."
     send: false
   - label: "🍂 Continue to HARVEST"
     agent: niwashi
-    prompt: "Read skills/niwashi-06-harvest/SKILL.md and begin the HARVEST phase. Review approved."
+    prompt: "Read skills/narrative/niwashi-06-harvest/SKILL.md and begin the HARVEST phase. Review approved."
     send: false
   - label: "🚀 Run SLFG (autonomous pipeline)"
     agent: niwashi
-    prompt: "Read skills/niwashi-slfg/SKILL.md and run the full autonomous pipeline."
+    prompt: "Read skills/narrative/niwashi-slfg/SKILL.md and run the full autonomous pipeline."
     send: false
   - label: "🧪 Run Smoke Test"
     agent: niwashi
-    prompt: "Read skills/niwashi-smoke-test/SKILL.md and run E2E browser smoke tests on the completed narrative."
+    prompt: "Read skills/narrative/niwashi-smoke-test/SKILL.md and run E2E browser smoke tests on the completed narrative."
     send: false
 ---
 
@@ -122,13 +122,13 @@ Based on artifact state, read and follow the corresponding skill:
 
 | State | Phase | Skill to read |
 |-------|-------|--------------|
-| Nothing in narrative dir | DISCOVER | `skills/niwashi-01-discover/SKILL.md` |
-| `narrative-brief.md` only | RESEARCH | `skills/niwashi-02-research/SKILL.md` |
-| `narrative-spec.md` exists, no `## Wireframes` | WIREFRAME | `skills/niwashi-03-wireframe/SKILL.md` |
-| `## Wireframes` exists, no checklist | BUILD (init) | `skills/niwashi-04-build/SKILL.md` |
-| Checklist exists, some `passes: false` | BUILD (continue) | `skills/niwashi-04-build/SKILL.md` |
-| All `passes: true`, `review_approved: false` | REVIEW | `skills/niwashi-05-review/SKILL.md` |
-| `review_approved: true` | HARVEST | `skills/niwashi-06-harvest/SKILL.md` |
+| Nothing in narrative dir | DISCOVER | `skills/narrative/niwashi-01-discover/SKILL.md` |
+| `narrative-brief.md` only | RESEARCH | `skills/narrative/niwashi-02-research/SKILL.md` |
+| `narrative-spec.md` exists, no `## Wireframes` | WIREFRAME | `skills/narrative/niwashi-03-wireframe/SKILL.md` |
+| `## Wireframes` exists, no checklist | BUILD (init) | `skills/narrative/niwashi-04-build/SKILL.md` |
+| Checklist exists, some `passes: false` | BUILD (continue) | `skills/narrative/niwashi-04-build/SKILL.md` |
+| All `passes: true`, `review_approved: false` | REVIEW | `skills/narrative/niwashi-05-review/SKILL.md` |
+| `review_approved: true` | HARVEST | `skills/narrative/niwashi-06-harvest/SKILL.md` |
 | Pattern doc exists, cycle complete | Suggest new narrative or celebrate |
 
 Read the skill file completely, then follow its instructions.

@@ -5,6 +5,6 @@ agent: niwashi
 argument-hint: "<concept to explain> [--cycles N] [--audience <audience>]"
 ---
 
-Read and follow the instructions in [skills/niwashi-slfg/SKILL.md](../../skills/niwashi-slfg/SKILL.md).
+Read and follow the instructions in [skills/narrative/niwashi-slfg/SKILL.md](../../skills/narrative/niwashi-slfg/SKILL.md).
 
 User wants to run the autonomous SLFG pipeline. $input

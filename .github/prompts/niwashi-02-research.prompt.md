@@ -5,6 +5,6 @@ agent: niwashi
 argument-hint: "[narrative name or 'continue']"
 ---
 
-Read and follow the instructions in [skills/niwashi-02-research/SKILL.md](../../skills/niwashi-02-research/SKILL.md).
+Read and follow the instructions in [skills/narrative/niwashi-02-research/SKILL.md](../../skills/narrative/niwashi-02-research/SKILL.md).
 
 User wants to start or continue the RESEARCH phase. $input

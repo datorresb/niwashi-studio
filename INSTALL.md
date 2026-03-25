@@ -52,7 +52,9 @@ rm -rf /tmp/niwashi-studio
 ```bash
 ls .github/agents/niwashi.agent.md && echo "✅ Agent installed"
 ls .github/prompts/niwashi-01-discover.prompt.md && echo "✅ Slash commands installed"
-ls skills/niwashi-01-discover/SKILL.md && echo "✅ Skills installed"
+ls skills/narrative/niwashi-01-discover/SKILL.md && echo "✅ Narrative skills installed"
+ls skills/external/web-artifacts-builder/SKILL.md && echo "✅ External skills installed"
+node skills/rebuild-registry.js && echo "✅ Skills index generated"
 ls niwashi_docs/patterns/.gitkeep && echo "✅ Workflow docs ready"
 ```
 

@@ -5,6 +5,6 @@ agent: niwashi
 argument-hint: "[narrative name]"
 ---
 
-Read and follow the instructions in [skills/niwashi-smoke-test/SKILL.md](../../skills/niwashi-smoke-test/SKILL.md).
+Read and follow the instructions in [skills/narrative/niwashi-smoke-test/SKILL.md](../../skills/narrative/niwashi-smoke-test/SKILL.md).
 
 User wants to run smoke tests on their narrative. $input

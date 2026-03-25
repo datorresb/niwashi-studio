@@ -265,9 +265,9 @@ Final:       HARVEST → DONE
 
 The SLFG orchestrator reads artifact state to resume from any phase. It calls the same 6 skills as `@niwashi` — no duplicate logic.
 
-## External Skills (in `skills/`)
+## External Skills (in `skills/external/`)
 
-> **Last updated:** 2026-03-24. These skills are snapshots — check the source repos for newer versions.
+> **Last updated:** 2026-03-25. These skills are snapshots — check the source repos for newer versions.
 
 | Skill | Source | License | Purpose |
 |-------|--------|---------|--------|
@@ -277,4 +277,12 @@ The SLFG orchestrator reads artifact state to resume from any phase. It calls th
 | `web-design-guidelines` | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills/tree/main/skills/web-design-guidelines) | MIT | UI review against Web Interface Guidelines |
 | `skill-creator` | [anthropics/skills](https://github.com/anthropics/skills/tree/main/skills/skill-creator) | See LICENSE.txt | Create, test, and optimize new skills on-the-fly |
 
-To update, re-download from the source repos and replace the corresponding `skills/` directory.
+To update, re-download from the source repos and replace the corresponding `skills/external/` directory.
+
+## Skill Index
+
+`skills/skills-index.json` is an auto-generated LLM-optimized index of all skills. Regenerate after adding or removing skills:
+
+```bash
+node skills/rebuild-registry.js
+```

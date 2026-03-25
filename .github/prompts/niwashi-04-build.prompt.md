@@ -5,6 +5,6 @@ agent: niwashi
 argument-hint: "[narrative name or 'continue']"
 ---
 
-Read and follow the instructions in [skills/niwashi-04-build/SKILL.md](../../skills/niwashi-04-build/SKILL.md).
+Read and follow the instructions in [skills/narrative/niwashi-04-build/SKILL.md](../../skills/narrative/niwashi-04-build/SKILL.md).
 
 User wants to start or continue the BUILD phase. $input

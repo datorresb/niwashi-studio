@@ -5,6 +5,6 @@ agent: niwashi
 argument-hint: "[narrative name or 'continue']"
 ---
 
-Read and follow the instructions in [skills/niwashi-06-harvest/SKILL.md](../../skills/niwashi-06-harvest/SKILL.md).
+Read and follow the instructions in [skills/narrative/niwashi-06-harvest/SKILL.md](../../skills/narrative/niwashi-06-harvest/SKILL.md).
 
 User wants to start the HARVEST phase. $input
